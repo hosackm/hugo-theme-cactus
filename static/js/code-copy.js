@@ -8,7 +8,10 @@
 
     let resetTimer
     copyBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText(codeNode.innerText).then(() => {
+      // markdown rendering doubles up newline characters
+      // until it is fixed upstream, I'll remove the duplicates
+      let code = codeNode.innerText.replace(/\n\n/g, '\n');
+      navigator.clipboard.writeText(code).then(() => {
         copyBtn.innerText = 'copied!'
       }).then(() => {
         clearTimeout(resetTimer)
@@ -22,15 +25,15 @@
   }
 
   document.querySelectorAll('pre > code')
-  .forEach((codeNode) => {
-    const copyBtn = createCopyButton(codeNode);
-    const preNode = codeNode.parentNode
-    codeNode.parentNode.insertBefore(copyBtn, codeNode)
-  })
+    .forEach((codeNode) => {
+      const copyBtn = createCopyButton(codeNode);
+      const preNode = codeNode.parentNode
+      codeNode.parentNode.insertBefore(copyBtn, codeNode)
+    })
 
   document.querySelectorAll('.highlight table > tbody > tr > td:first-child .code-copy-btn')
-  .forEach((btn) => {
-    btn.remove()
-  })
+    .forEach((btn) => {
+      btn.remove()
+    })
 
 })()
