@@ -2,7 +2,12 @@
   <div class="footer-left">
     Copyright &copy; {{ now.Format "2006" }} {{ if .Site.Copyright }} {{ print .Site.Copyright | markdownify }} {{ else
     }} {{ print .Site.Title }} {{ end }}
-    | gh:<a href='{{ getenv "HUGO_COMMIT_URL" }}'>{{ getenv "HUGO_COMMIT_HASH" }}</a>
+    | {{- if $.GitInfo -}}
+    <strong>Latest commit</strong>: <a href="https://github.com/hosackm/hosackm.github.io/commit/{{ .GitInfo.Hash }}"
+      rel="noopener">{{ .GitInfo.AbbreviatedHash }}</a>
+    {{- else -}}
+    &nbsp;
+    {{- end -}}</a>
   </div>
   <div class="footer-right">
     <nav>
