@@ -3,7 +3,7 @@
     Copyright &copy; {{ now.Format "2006" }} {{ if .Site.Copyright }} {{ print .Site.Copyright | markdownify }} {{ else
     }} {{ print .Site.Title }} {{ end }}
     | {{- if $.GitInfo -}}
-    <strong>Latest commit</strong>: <a href="https://github.com/hosackm/hosackm.github.io/commit/{{ .GitInfo.Hash }}"
+    <strong> gh</strong>: <a href="https://github.com/hosackm/hosackm.github.io/commit/{{ .GitInfo.Hash }}"
       rel="noopener">{{ .GitInfo.AbbreviatedHash }}</a>
     {{- else -}}
     &nbsp;
